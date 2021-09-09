@@ -1,6 +1,7 @@
 <template>
   <div class="header">
-    <h3>Supermarket</h3>
+    <!-- <h3>Supermarket</h3> -->
+    <img class="brand" src="../../assets/img/food.png" alt="Supermarket" />
     <nav>
       <button v-on:click="init" v-if="is_auth">Inicio</button>
       <button v-on:click="categories" v-if="is_auth">Categorías</button>
@@ -55,6 +56,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.brand {
+  height: 60px;
 }
 
 @media only screen and (max-width: 700px) {
