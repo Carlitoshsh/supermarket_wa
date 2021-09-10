@@ -1,0 +1,16 @@
+.simple-box {
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.simple-box.success-server {
+  border: 1px solid var(--success-color);
+}
+
+.simple-box.error-server {
+  border: 1px solid var(--error-color);
+}

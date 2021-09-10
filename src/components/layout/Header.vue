@@ -3,10 +3,11 @@
     <!-- <h3>Supermarket</h3> -->
     <img class="brand" src="../../assets/img/food.png" alt="Supermarket" />
     <nav>
-      <button v-on:click="init" v-if="is_auth">Inicio</button>
+      <!-- <button v-on:click="init" v-if="is_auth">Inicio</button> -->
       <button v-on:click="categories" v-if="is_auth">Categorías</button>
-      <button v-if="is_auth">Productos</button>
-      <button v-if="is_auth">Cerrar Sesión</button>
+      <button v-on:click="suppliers" v-if="is_auth">Proveedor</button>
+      <button v-on:click="interop" v-if="is_auth">Orquestación</button>
+      <!-- <button v-if="is_auth">Cerrar Sesión</button> -->
     </nav>
   </div>
 </template>
@@ -36,6 +37,20 @@ export default {
         this.$router.push({
           name: "categories",
           params: { username: username },
+        });
+      }
+    },
+    suppliers: function () {
+      if (this.$route.name != "suppliers") {
+        this.$router.push({
+          name: "suppliers",
+        });
+      }
+    },
+    interop: function () {
+      if (this.$route.name != "interop") {
+        this.$router.push({
+          name: "interop",
         });
       }
     },

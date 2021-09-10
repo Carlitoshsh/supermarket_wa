@@ -1,23 +1,27 @@
 <template>
   <div id="Categories">
-    <p>
-      Usuario autenticado: <span>{{ username }}</span>
-    </p>
-    <button v-on:click="getCategory">Obtener categoría</button>
-    <label>
-      La categoría con id = <span>{{ category_id }}</span
-      >, tiene el nombre <span>{{ name }}</span> y su descripción es «<span>{{
-        description
-      }}</span
-      >».
-    </label>
-    <input v-model="category" placeholder="edit me" />
-    <p>category is: {{ category }}</p>
-
-    <input v-model="description" placeholder="edit me" />
-    <p>description is: {{ description }}</p>
-    <button v-on:click="postCategory">Publicar categoría</button>
-    <div class="error-server" v-if="!serverConnect">
+    <div class="simple-box">
+      <p>
+        Usuario autenticado: <span>{{ username }}</span>
+      </p>
+      <button v-on:click="getCategory">Obtener categoría</button>
+      <div class="simple-box success-server" v-if="serverConnect">
+        <label>
+          La categoría con id = <span>{{ category_id }}</span
+          >, tiene el nombre <span>{{ name }}</span> y su descripción es «<span
+            >{{ description }}</span
+          >».
+        </label>
+      </div>
+    </div>
+    <div class="simple-box">
+      <label>category is: {{ category }}</label>
+      <input v-model="category" placeholder="edit me" />
+      <label>description is: {{ description }}</label>
+      <input v-model="description" placeholder="edit me" />
+      <button v-on:click="postCategory">Publicar categoría</button>
+    </div>
+    <div class="simple-box error-server" v-if="!serverConnect">
       <label>✖ No hay conexión con el servidor. Reintente...</label>
     </div>
   </div>
@@ -35,7 +39,7 @@ export default {
       name: "",
       description: "",
       category: "",
-      serverConnect: true,
+      serverConnect: null,
     };
   },
 
@@ -47,7 +51,7 @@ export default {
     getCategory: function () {
       this.username = this.$route.params.username;
       let self = this;
-      self.serverConnect = true;
+      self.serverConnect = null;
 
       axios
         .post("http://localhost:5000/graphql", {
@@ -73,7 +77,7 @@ export default {
     },
     postCategory: function () {
       let self = this;
-      self.serverConnect = true;
+      self.serverConnect = null;
 
       axios
         .post("http://localhost:5000/graphql", {
@@ -118,11 +122,5 @@ export default {
   font-weight: bold;
 }
 
-.error-server {
-  background: var(--error-color);
-  color: var(--background-color);
-  border-radius: 0.5rem;
-  padding: 0.3rem 0.6rem;
-  margin: 1rem 0;
-}
+
 </style>
